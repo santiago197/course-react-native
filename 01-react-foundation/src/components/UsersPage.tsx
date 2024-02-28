@@ -1,18 +1,9 @@
-import { useEffect } from 'react';
 import type { User } from '../interfaces';
-import { loadUsers, useUsers } from '../hooks/useUsers';
+import { useUsers } from '../hooks/useUsers';
+import { UserRow } from './UserRow';
 
 export const UsersPage = () => {
-	const { users, currentPageRef, setUsers, previousPage, nextPage } =
-		useUsers();
-	useEffect(() => {
-		// fetch('https://reqres.in/api/users?page=2')
-		// 	.then((resp) => resp.json())
-		// 	.then((data) => console.log(data));
-
-		loadUsers(currentPageRef.current).then(setUsers);
-		// loadUsers().then((users) => setUsuarios(users));
-	}, []);
+	const { users, previousPage, nextPage } = useUsers();
 
 	return (
 		<>
@@ -39,27 +30,5 @@ export const UsersPage = () => {
 				<button onClick={nextPage}>Next</button>
 			</div>
 		</>
-	);
-};
-interface Props {
-	user: User;
-}
-
-export const UserRow = ({ user }: Props) => {
-	const { avatar, first_name, last_name, email } = user;
-	return (
-		<tr>
-			<td>
-				<img
-					src={avatar}
-					alt={first_name}
-					style={{ width: '50px' }}
-				/>
-			</td>
-			<td>
-				{first_name} {last_name}
-			</td>
-			<td>{email}</td>
-		</tr>
 	);
 };

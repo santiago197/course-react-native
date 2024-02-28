@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { ReqResUserListResponse, User } from '../interfaces';
 import axios from 'axios';
 
@@ -22,6 +22,14 @@ export const useUsers = () => {
 		const users = await loadUsers(currentPageRef.current);
 		setUsers(users);
 	};
+	useEffect(() => {
+		// fetch('https://reqres.in/api/users?page=2')
+		// 	.then((resp) => resp.json())
+		// 	.then((data) => console.log(data));
+
+		loadUsers(currentPageRef.current).then(setUsers);
+		// loadUsers().then((users) => setUsuarios(users));
+	}, []);
 	return {
 		users,
 		currentPageRef,
