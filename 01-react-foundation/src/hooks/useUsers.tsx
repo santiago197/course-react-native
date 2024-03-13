@@ -3,7 +3,6 @@ import type { ReqResUserListResponse, User } from '../interfaces';
 import axios from 'axios';
 
 export const useUsers = () => {
-	3;
 	const currentPageRef = useRef(1);
 	const [users, setUsers] = useState<User[]>([]);
 	const nextPage = async () => {

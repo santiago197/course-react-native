@@ -24,7 +24,7 @@ export const FormsPage = () => {
 					<input
 						type="text"
 						placeholder="Email"
-						{...register('email', { required: true })}
+						{...register('email', { required: true, valueAsDate: true })}
 					/>
 					<input
 						type="text"
